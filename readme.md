@@ -37,5 +37,5 @@ Clone or Fork the Repository and slap your keyboard to run following lines :
         api/instrument-query
 
     PUT Update Instrument by Filllist Query
-        api/instrument/?instrument_id=54573
+        api/instrument
 
