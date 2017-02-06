@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/../css/bootstrap.min.css">
+</head>
+<body style="padding-top : 90px;">
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://localhost:3000/api/index">Qunatinsti</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="http://localhost:3000/api/showAll">Instruments</a></li>
+                <li><a href="http://localhost:3000/api/instrument-query">Execute Query</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h1>List of Instruments</h1>
+            <p class="lead">Here are the Status of all instruments</p>
+
+            <table class="table table-striped">
+                <tr>
+                    <th width="50px">No</th>
+                    <th>Instrument</th>
+                    <th>Status</th>
+                </tr>
+                <% if(data.length){
+                for(var i = 0;i < data.length;i++) { %>
+                <tr>
+                    <td><%= (i + 1) %></td>
+                    <td><%= data[i].instrument_id %></td>
+                    <td>
+
+                        <% if(data[i].position > 0){%>
+                        Bought
+                        <%
+                        }else{ %>
+                        Sold
+                        <% } %>
+
+                    </td>
+                </tr>
+                <% }
+
+                }else{ %>
+                <tr>
+                    <td colspan="5">No Data</td>
+                </tr>
+                <% } %>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <h3>Get Details of an Instrument</h3>
+            <div class="row">
+                <div class="col-md-12">
+                    <form method="get" action="/api/instrument/">
+                        <div class = "input-group">
+                            <input type="text" class="form-control" name="instrument_id">
+                            <span class = "input-group-btn">
+                              <button class = "btn btn-primary" type = "button" onClick="javascript:this.form.submit();">
+                                  Get Details of Instrument
+                              </button>
+                           </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
